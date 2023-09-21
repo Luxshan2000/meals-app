@@ -1,2 +1,2 @@
 # meals-app
-for learning purpose
+npx create-expo-app
