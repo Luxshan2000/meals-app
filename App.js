@@ -1,20 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from "expo-font";
+import { KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import CategoriesScreen from './screens/CategoriesScreen';
 
 export default function App() {
+  const [isFontLoaded] = useFonts({
+    POPPINS_REGULAR : require("./fonts/Poppins-Regular.ttf")
+  })
+  if(!isFontLoaded){
+    return null
+  }
   return (
-    <View style={styles.container}>
-      <Text>Hello!!</Text>
+    <>
+      <StatusBar style='light' />
+      <CategoriesScreen/>
+    </>
+        
       
-    </View>
+
+  
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop:30,
+    paddingHorizontal:10
   },
 });
