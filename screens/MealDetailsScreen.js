@@ -11,7 +11,7 @@ function MealDetailsScreen({route, navigation}) {
     const selectedMeal = MEALS.find((item) => item.id === id)
 
     const handleTapMe = ()=>{
-      console.log("Handle tap me!")
+      console.log("tapped!")
     }
    
     useLayoutEffect(()=>{
