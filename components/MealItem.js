@@ -1,10 +1,19 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View , Text, Image, StyleSheet, Pressable, Platform} from 'react-native'
 
 function MealItem({item}) {
+    const navigation = useNavigation()
+
+    mealdetailsNavigationHandler = ()=>{
+        navigation.navigate("mealdetails",{
+            mealId: item.id
+        })
+    }
+
   return (
     <View style={styles.mealItem}>
-        <Pressable style={({pressed})=> pressed ? styles.buttonPressed :null } android_ripple={{color:"#ccc"}}>
+        <Pressable onPress={mealdetailsNavigationHandler} style={({pressed})=> pressed ? styles.buttonPressed :null } android_ripple={{color:"#ccc"}}>
             <View style={styles.innerContainer}>
             <Image source={{uri:item.imageUrl}} style={styles.image} />
             <Text style={styles.mealName}>{item.title}</Text>
@@ -29,9 +38,9 @@ const styles = StyleSheet.create({
     mealItem:{
         margin:16,
         borderRadius:8,
-        overflow: Platform.OS == "android" ? 'hidden' : 'visible', //for ios
+        overflow: Platform.OS === "android" ? 'hidden' : 'visible', //for ios
         backgroundColor:'white',
-        elevation:1,
+        
         shadowColor:'black',
         shadowOpacity:0.25,
         shadowOffset:{width:0, height:2},
