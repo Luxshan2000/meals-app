@@ -1,22 +1,41 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { Button, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { MEALS } from '../data/dummy-data'
 import MealDetails from '../components/MealDetails'
 import Subtitle from '../components/mealDetails/Subtitle'
 import List from '../components/mealDetails/List'
 import IconButton from '../components/IconButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { addFavourite, removeFavourite } from '../store/redux/favourite'
+// import { FavouriteContext } from '../store/context/FavouriteContext'
 
 function MealDetailsScreen({route, navigation}) {
     const id = route.params.mealId
     const selectedMeal = MEALS.find((item) => item.id === id)
 
+    // const value = useContext(FavouriteContext)
+    const value = useSelector((state)=>state.favouriteMeals.ids)
+    const dispatch = useDispatch()
+
+
+    
+    const isFavourite = value.includes(selectedMeal.id) //value.ids.includes(selectedMeal)
+
     const handleTapMe = ()=>{
-      console.log("tapped!")
+      if(isFavourite){
+        // value.removeFavourite(selectedMeal)
+        dispatch(removeFavourite({id:id}))
+        
+      }else{ 
+        // value.addFavourite(selectedMeal)
+        dispatch(addFavourite({id:id}))
+        
+      }
     }
    
     useLayoutEffect(()=>{
       navigation.setOptions({
-        headerRight: ()=> <IconButton color="yellow"  icon="star"  onPress={handleTapMe} />
+        headerRight: ()=> <IconButton color="yellow"  icon= {isFavourite ? "star" : "star-outline"}   onPress={handleTapMe} />
       })
     })
 

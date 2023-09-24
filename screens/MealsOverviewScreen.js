@@ -1,15 +1,13 @@
 import { useLayoutEffect } from "react"   //something want to render before rendering the component
 import { View, Text, FlatList } from "react-native"
 import MealItem from "../components/MealItem"
+import MealList from "../components/MealList"
 import { MEALS } from "../data/dummy-data"
 import { CATEGORIES } from "../data/dummy-data"
 function MealsOverviewScreen({route, navigation}) {
     const catId = route.params.categoryId 
     
-    const renderMealItem = (item)=>{
-        return <MealItem item={item} />
-    }
-
+    const items = MEALS.filter((item)=> item.categoryIds.includes(catId) )
     
 
     useLayoutEffect(()=>{
@@ -23,11 +21,7 @@ function MealsOverviewScreen({route, navigation}) {
     
     
   return (
-    <FlatList
-        data={MEALS.filter((item)=> item.categoryIds.includes(catId) )}
-        keyExtractor={(item) => item.id}
-        renderItem={(itemData)=>renderMealItem(itemData.item)}
-    />
+    <MealList items={items} />
   )
 }
 
