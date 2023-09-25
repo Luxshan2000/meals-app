@@ -12,6 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 // import {FavouriteContextProvider} from './store/context/FavouriteContext';
 import { Provider } from 'react-redux';
 import { store } from './store/redux/store';
+import { useEffect } from 'react';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -60,6 +61,9 @@ export default function App() {
   if(!isFontLoaded){
     return null
   }
+
+  
+
   return (
     <>
       <StatusBar style='light' backgroundColor='#351401' />
