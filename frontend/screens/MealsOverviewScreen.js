@@ -18,16 +18,18 @@ function MealsOverviewScreen({route, navigation}) {
       const apiUrl = `http://192.168.8.182:5000/api/get/meal/${catId}`;
     
       // Make a GET request using fetch
+      
       fetch(apiUrl)
         .then((response) => response.json())
         .then((responseData) => {
-          console.log(responseData)
           setItems(responseData)
         })
         .catch((err) => {
-          console.log('Error fetching data:')
+          console.log('Error fetching data')
+          
+        }).finally(()=>{
+          dispatch(toggleStatus())
         })
-        dispatch(toggleStatus())
       // setItems( MEALS.filter((item)=> item.categoryIds.includes(catId) ))
     },[])
     
@@ -44,7 +46,7 @@ function MealsOverviewScreen({route, navigation}) {
     
     
   return (
-    items ? <MealList items={items} /> : <NavigationLoadingScreen />
+    items ? <MealList items={items} /> : null
     )
 }
 

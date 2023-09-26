@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import { store } from './store/redux/store';
 import { useEffect } from 'react';
+import NavigationLoadingScreen from './screens/NavigationLoadingScreen';
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -70,6 +71,7 @@ export default function App() {
       {/* <FavouriteContextProvider> */}
       
       <Provider  store={store}>
+        <NavigationLoadingScreen />
         <NavigationContainer>
           <Stack.Navigator screenOptions={{
             headerStyle:{backgroundColor:"#351401"},
