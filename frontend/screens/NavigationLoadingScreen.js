@@ -9,7 +9,7 @@ const NavigationLoadingScreen = () => {
       <Modal
         animationType="fade" // You can adjust the animation type as per your preference
         transparent={true}
-        visible={visible}
+        visible={true}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>

@@ -17,7 +17,7 @@ const favouriteSlice = createSlice({
             
         },
         toggleStatus : (state, action) => {
-            state.status = !state.status
+            state.isloading = !state.isloading
         }
     }
 })

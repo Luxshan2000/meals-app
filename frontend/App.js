@@ -68,6 +68,7 @@ export default function App() {
     <>
       <StatusBar style='light' backgroundColor='#351401' />
       {/* <FavouriteContextProvider> */}
+      
       <Provider  store={store}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{

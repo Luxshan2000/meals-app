@@ -5,8 +5,7 @@ import { useDispatch } from 'react-redux'
 import CategoryGridTile from '../components/CategoryGridTile'
 import { CATEGORIES } from '../data/dummy-data'
 import NavigationLoadingScreen from './NavigationLoadingScreen'
-
-
+import { toggleStatus } from '../store/redux/favourite'
 
 
 
@@ -24,7 +23,7 @@ function  CategoriesScreen ({navigation}) {
     function renderCategoryItem(item) {
 
         const navigationHandler = ()=>{
-            // dispatch(toggleStatus())
+            dispatch(toggleStatus())
             navigation.navigate("meals", {categoryId:item.id})
         }
 
@@ -33,21 +32,12 @@ function  CategoriesScreen ({navigation}) {
         )
     }
 
-    return (
-        <>
-        
-        
-        <NavigationLoadingScreen />
-        
-        
-        
+    return (  
         <FlatList 
         data={CATEGORIES}
         renderItem={(data)=>renderCategoryItem(data.item)}
         keyExtractor={(item)=> item.id}
         numColumns={2}/>
-        </>
-      
     )
 }
 
