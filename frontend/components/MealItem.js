@@ -8,7 +8,7 @@ function MealItem({item}) {
 
     mealdetailsNavigationHandler = ()=>{
         navigation.navigate("mealdetails",{
-            mealId: item.id
+            item: item
         })
     }
 

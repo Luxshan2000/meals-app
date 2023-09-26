@@ -3,7 +3,7 @@ const router = express.Router();
 const getData = require('../controllers/getData');
 
 
-router.get('/meal', getData.getMeal)
+router.get('/meal/:id', getData.getMeal)
 
 
 module.exports = router;

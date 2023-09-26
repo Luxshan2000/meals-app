@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import { Button, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { MEALS } from '../data/dummy-data'
 import MealDetails from '../components/MealDetails'
@@ -10,8 +10,12 @@ import { addFavourite, removeFavourite } from '../store/redux/favourite'
 // import { FavouriteContext } from '../store/context/FavouriteContext'
 
 function MealDetailsScreen({route, navigation}) {
-    const id = route.params.mealId
-    const selectedMeal = MEALS.find((item) => item.id === id)
+    const selectedMeal = route.params.item
+    
+
+    if(!selectedMeal){
+      return <Text>Loading...</Text>
+    }
 
     // const value = useContext(FavouriteContext)
     const value = useSelector((state)=>state.favouriteMeals.ids)

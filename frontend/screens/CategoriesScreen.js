@@ -1,8 +1,10 @@
 // import { useNavigation } from '@react-navigation/native'
 import React, { useEffect } from 'react'
 import { FlatList, } from 'react-native'
+import { useDispatch } from 'react-redux'
 import CategoryGridTile from '../components/CategoryGridTile'
 import { CATEGORIES } from '../data/dummy-data'
+import NavigationLoadingScreen from './NavigationLoadingScreen'
 
 
 
@@ -11,27 +13,18 @@ import { CATEGORIES } from '../data/dummy-data'
 
 function  CategoriesScreen ({navigation}) {
 
-    // const navigation = useNavigation() 
+    // const navigation = useNavigation()
+    const  dispatch = useDispatch()
 
-    useEffect(() => {
-        // Define the URL you want to fetch data from
-        const apiUrl = 'http://192.168.8.182:5000/api/get/meal';
+
+
     
-        // Make a GET request using fetch
-        fetch(apiUrl)
-          .then((response) => response.json())
-          .then((responseData) => {
-            console.log(responseData)
-          })
-          .catch((error) => {
-            console.log('Error fetching data')
-          })
-      }, [])
     
 
     function renderCategoryItem(item) {
 
         const navigationHandler = ()=>{
+            // dispatch(toggleStatus())
             navigation.navigate("meals", {categoryId:item.id})
         }
 
@@ -41,11 +34,20 @@ function  CategoriesScreen ({navigation}) {
     }
 
     return (
-      <FlatList 
+        <>
+        
+        
+        <NavigationLoadingScreen />
+        
+        
+        
+        <FlatList 
         data={CATEGORIES}
         renderItem={(data)=>renderCategoryItem(data.item)}
         keyExtractor={(item)=> item.id}
         numColumns={2}/>
+        </>
+      
     )
 }
 

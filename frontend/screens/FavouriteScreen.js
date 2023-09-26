@@ -7,8 +7,8 @@ import { FavouriteContext } from '../store/context/FavouriteContext'
 
 function FavouriteScreen() {
 
-  const value = useContext(FavouriteContext)
-  const items = value.ids
+  // const value = useContext(FavouriteContext)
+  // const items = value.ids
 
   const favIds = useSelector((state)=> state.favouriteMeals.ids)
 
