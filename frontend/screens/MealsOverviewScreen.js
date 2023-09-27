@@ -15,7 +15,7 @@ function MealsOverviewScreen({route, navigation}) {
     useEffect(()=>{
       
       // Define the URL you want to fetch data from
-      const apiUrl = `http://192.168.8.182:5000/api/get/meal/${catId}`;
+      const apiUrl = `http://16.171.237.38:5000/api/get/meal/${catId}`;
     
       // Make a GET request using fetch
       

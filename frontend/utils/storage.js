@@ -24,7 +24,7 @@ export const saveList = async (finalList) => {
       
       const listString = JSON.stringify(finalList);
       await AsyncStorage.setItem('@MealApp:favids', listString)
-      console.log('List saved successfully')
+      // console.log('List saved successfully')
     } catch (error) {
       console.error('Error saving list:')
     }
