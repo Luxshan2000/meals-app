@@ -56,12 +56,15 @@ function DrawerNavigator() {
 
 
 export default function App() {
+  
   const [isFontLoaded] = useFonts({
     POPPINS_REGULAR : require("./fonts/Poppins-Regular.ttf")
   })
   if(!isFontLoaded){
     return null
   }
+
+
 
   
 

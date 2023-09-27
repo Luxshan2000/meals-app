@@ -7,6 +7,7 @@ import List from '../components/mealDetails/List'
 import IconButton from '../components/IconButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFavourite, removeFavourite } from '../store/redux/favourite'
+import { saveList } from '../utils/storage'
 // import { FavouriteContext } from '../store/context/FavouriteContext'
 
 function MealDetailsScreen({route, navigation}) {
@@ -23,17 +24,16 @@ function MealDetailsScreen({route, navigation}) {
 
 
     
-    const isFavourite = value.includes(selectedMeal.id) //value.ids.includes(selectedMeal)
+    const isFavourite = value.includes(selectedMeal._id) //value.ids.includes(selectedMeal)
 
     const handleTapMe = ()=>{
       if(isFavourite){
         // value.removeFavourite(selectedMeal)
-        dispatch(removeFavourite({id:id}))
+        dispatch(removeFavourite({id:selectedMeal._id}))
         
       }else{ 
         // value.addFavourite(selectedMeal)
-        dispatch(addFavourite({id:id}))
-        
+        dispatch(addFavourite({id:selectedMeal._id}))
       }
     }
    

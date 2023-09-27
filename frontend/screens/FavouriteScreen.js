@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
 import MealList from '../components/MealList'
@@ -10,11 +10,34 @@ function FavouriteScreen() {
   // const value = useContext(FavouriteContext)
   // const items = value.ids
 
+  const [meals, setMeals] = useState([])
+
   const favIds = useSelector((state)=> state.favouriteMeals.ids)
 
   
 
-  const lists = MEALS.filter((item)=> favIds.includes(item.id))
+
+  useEffect(()=>{
+      
+    // Define the URL you want to fetch data from
+    const apiUrl = `http://192.168.8.182:5000/api/get/meal/${"*"}`;
+  
+    // Make a GET request using fetch
+    
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((responseData) => {
+        setMeals(responseData)
+      })
+      .catch((err) => {
+        console.log('Error fetching data')
+        
+      })
+    // setItems( MEALS.filter((item)=> item.categoryIds.includes(catId) ))
+  },[])
+  
+
+  const lists = meals.filter((item)=> favIds.includes(item._id))
 
   
   if(lists.length === 0){

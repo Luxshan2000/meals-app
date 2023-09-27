@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux'
 import CategoryGridTile from '../components/CategoryGridTile'
 import { CATEGORIES } from '../data/dummy-data'
 import NavigationLoadingScreen from './NavigationLoadingScreen'
-import { toggleStatus } from '../store/redux/favourite'
+import { setFetchData, toggleStatus } from '../store/redux/favourite'
+import { retrieveList } from '../utils/storage'
 
 
 
@@ -15,7 +16,11 @@ function  CategoriesScreen ({navigation}) {
     // const navigation = useNavigation()
     const  dispatch = useDispatch()
 
-
+    useEffect(()=>{
+        retrieveList().then((list)=>{
+            dispatch(setFetchData({list:list}))
+        }).catch((err)=>console.log("Error while initial setup", err))
+    },[])
 
     
     
