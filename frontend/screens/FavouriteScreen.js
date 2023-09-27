@@ -20,7 +20,7 @@ function FavouriteScreen() {
   useEffect(()=>{
       
     // Define the URL you want to fetch data from
-    const apiUrl = `http://192.168.8.182:5000/api/get/meal/${"*"}`;
+    const apiUrl = `https://16.171.237.38:5000/api/get/meal/${"*"}`;
   
     // Make a GET request using fetch
     
